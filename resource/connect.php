@@ -19,8 +19,6 @@ class Connect{
 
   public function Connect()
   {
-      $this->connection =  new mysqli($this->host , $this->user , $this->password , $this->database);
+      return new mysqli($this->host , $this->user , $this->password , $this->database);
   }
 }
-
-$db = new Connect;

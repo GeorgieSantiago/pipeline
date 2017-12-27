@@ -5,7 +5,7 @@ include "vendor/larapack/dd/src/helper.php";
 use Larapacks\Authorization\Traits\RolePermissionsTrait as Auth;
 use illuminate\database as db;
 
-class pipeline
+class pipeline extends Connect
 {
     protected $result;
     protected $auth;
@@ -14,47 +14,48 @@ class pipeline
     Call all resources for pipeline
     call correct action method
     */
-    public function __construct($db)
+    public function __construct()
     {
-        $this->conn = $db->connection;
-        $_GET['auth'] = 12345;
+        parent::__construct();
+        $this->conn = $this->Connect();
         $this->auth();
     }
 
     private function auth()
     {
-        if ($_SERVER["REQUEST_METHOD"] == 'GET') {
-            if ($_GET['auth'] !== 12345) {
-                die("Incorrect Credentials");
-            } else {
-                $this->request($_GET);
-            }
-        } elseif ($_SERVER["REQUEST_METHOD"] == 'POST') {
-            if ($_POST['auth'] !== 12345) {
-                die("Incorrect Credentials");
-            } else {
-                $this->request($_POST);
+        if (!isset($_POST['auth'])) {
+            die("Not Authorized");
+        } else {
+            if ($_SERVER["REQUEST_METHOD"] == 'GET') {
+                die("Not Authorized");
+            } elseif ($_SERVER["REQUEST_METHOD"] == 'POST') {
+                if ($_POST['auth'] !== 12345) {
+                    die("Incorrect Credentials");
+                } else {
+                    $this->request($_POST);
+                }
             }
         }
     }
 
-    private function datetime()
-    {
-
-    }
-
-
-/*Example request:  $result = $this->conn->query("SELECT * FROM test"); */
     private function request($data)
     {
-        $model = new Model;
-        $query = $this->conn->query($model->getTableList());
-        print_r($data);
+        $model  = new Model;
+        $result = $this->conn->querty($model->CreateQuery($data));
+
+        if ($result->affected_rows > 0) {
+            $this->result($result->fetch_object);
+        } else {
+            $this->result("No results returned");
+        }
     }
 
-    public function result()
+    public function result($row)
     {
+        var_dump($row);
+        $row = json_encode($row);
         $pipeline->clean();
+        exit;
     }
 
     public function clean()
@@ -63,5 +64,3 @@ class pipeline
     }
 
 }
-
-$pipeline = new pipeline($db);
