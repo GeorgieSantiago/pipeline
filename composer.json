@@ -1,0 +1,7 @@
+{
+    "require": {
+        "illuminate/database": "*",
+        "larapack/dd": "1.*",
+        "larapacks/authorization": "1.1.*"
+    }
+}

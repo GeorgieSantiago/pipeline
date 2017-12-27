@@ -1,8 +1,10 @@
 <?php
-
 namespace pipeline;
+include "vendor/larapack/dd/src/helper.php";
+use Larapacks\Authorization\Traits\RolePermissionsTrait;
 use pipeline\connect;
 use pipeline\model;
+use illuminate\database;
 
 class pipeline {
   protected $result;
