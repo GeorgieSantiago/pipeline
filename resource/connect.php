@@ -9,10 +9,10 @@ class Connect{
 
   public function __construct()
   {
-    $this->host = 'localhost';
-    $this->user = 'root';
-    $this->password = '';
-    $this->database = 'pipeline';
+    $this->host = DB_HOST;
+    $this->user = DB_USER;
+    $this->password = DB_PASSWORD;
+    $this->database = DB_TABLE;
 
     $this->Connect();
   }
