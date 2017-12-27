@@ -1,12 +1,11 @@
 <?php
 
-namespace pipeline\connect;
-
-class connect{
+class Connect{
   protected $host;
   protected $user;
   protected $password;
   protected $database;
+  public $connection;
 
   public function __construct()
   {
@@ -14,12 +13,14 @@ class connect{
     $this->user = 'root';
     $this->password = '';
     $this->database = 'pipeline';
+
+    $this->Connect();
   }
 
-  public static function Connect()
+  public function Connect()
   {
-      return new mysqli($this->host , $this->user , $this->password , $this->database);
+      $this->connection =  new mysqli($this->host , $this->user , $this->password , $this->database);
   }
-
-
 }
+
+$db = new Connect;
