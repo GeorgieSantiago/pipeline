@@ -1,5 +1,4 @@
 <?php
-namespace pipeline\model;
 class Model
 {
 
@@ -20,8 +19,8 @@ class Model
     */
     public function CreateQuery($data)
     {
-        if (!isset($data['condition'])) {
             if ($data['request_type'] == "SELECT") {
+              if (!isset($data['condition'])) {
                 return $data['request_type'] . " * FROM " . $data['table'];
             } else {
                 return $data['request_type'] . " * FROM " . $data['table'] . " WHERE " . $data['condition'];

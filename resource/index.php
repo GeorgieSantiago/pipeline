@@ -20,6 +20,10 @@ class pipeline extends Connect
     {
         parent::__construct();
         $this->conn = $this->Connect();
+        $_POST['auth'] = 12345;
+        $_POST['request_type'] = "SELECT";
+        $_POST['table'] = "test";
+        $_SERVER["REQUEST_METHOD"] = "POST";
         $this->auth();
     }
 
@@ -45,10 +49,10 @@ class pipeline extends Connect
     private function request($data)
     {
         $model = new Model;
-        $result = $this->conn->querty($model->CreateQuery($data));
+        $result = $this->conn->query($model->CreateQuery($data));
 
-        if ($result->affected_rows > 0) {
-            $this->result($result->fetch_object);
+        if ($result->num_rows > 0) {
+            $this->result($result->fetch_object());
         } else {
             $this->result("No results returned");
         }
@@ -57,7 +61,7 @@ class pipeline extends Connect
     public function result($row)
     {
         $row = json_encode($row);
-        var_dump($row);
+        print_r($row);
         $this->clean();
         exit;
     }
