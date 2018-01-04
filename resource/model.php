@@ -47,7 +47,7 @@ class Model
     protected function authorize($data)
     {
         $un = $data['username'];
-        $pw = $data['pin'];
+        $pw = $data['password'];
 
         $sql = "SELECT * FROM users WHERE `username`=$un AND `pin`=$pw";
 
