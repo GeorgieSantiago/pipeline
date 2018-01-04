@@ -1,4 +1,11 @@
 <?php
+//Testing data
+/*
+$_POST['auth'] = 12345;
+$_POST['request_type'] = "SELECT";
+$_POST['table'] = "test";
+$_SERVER["REQUEST_METHOD"] = "POST";
+*/
 require "resource/connect.php";
 require "resource/model.php";
 include "vendor/larapack/dd/src/helper.php";
@@ -13,17 +20,16 @@ class pipeline extends Connect
     protected $conn;
 
     /*
-    Call all resources for pipeline
-    call correct action method
-    */
+     *  @params
+     *  @return
+     *  @description: Checks Authentication and ACL for Pipeline API
+     * */
     public function __construct()
     {
+        header('Access-Control-Allow-Origin: *');
         parent::__construct();
+        $this->acl();
         $this->conn = $this->Connect();
-        $_POST['auth'] = 12345;
-        $_POST['request_type'] = "SELECT";
-        $_POST['table'] = "test";
-        $_SERVER["REQUEST_METHOD"] = "POST";
         $this->auth();
     }
 
@@ -33,15 +39,10 @@ class pipeline extends Connect
         if (!isset($_POST['auth'])) {
             die("Not Authorized");
         } else {
-            if ($_SERVER["REQUEST_METHOD"] == 'POST') {
-                if ($_POST['auth'] !== 12345) {
-                    die("Incorrect Credentials");
-                } else {
-                    $this->request($_POST);
-                }
+            if ($_POST['auth'] !== '12345') {
+                die("Incorrect Credentials");
             } else {
-                die("Something went wrong");
-                exit;
+                $this->request($_POST);
             }
         }
     }
@@ -49,21 +50,33 @@ class pipeline extends Connect
     private function request($data)
     {
         $model = new Model;
-        $result = $this->conn->query($model->CreateQuery($data));
-
+        $sql = $model->CreateQuery($data);
+        //$tmp = get_class_methods(print_r($this->conn));
+//        die($tmp);
+        $result = $this->conn->query($sql);
+        $tmp = [];
         if ($result->num_rows > 0) {
-            $this->result($result->fetch_object());
+            while ($row = $result->fetch_assoc()) {
+                $tmp[] = $row;
+            }
+            $this->resulter($tmp);
         } else {
-            $this->result("No results returned");
+            $this->resulter("No results returned");
         }
     }
 
-    public function result($row)
+    public function resulter($row)
     {
         $row = json_encode($row);
         print_r($row);
         $this->clean();
         exit;
+    }
+
+    /*TODO Grant strict access through ACL*/
+    protected function acl()
+    {
+        return false;
     }
 
     public function clean()

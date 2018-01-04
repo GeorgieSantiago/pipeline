@@ -1,4 +1,5 @@
 <?php
+
 class Model
 {
 
@@ -19,8 +20,12 @@ class Model
     */
     public function CreateQuery($data)
     {
-            if ($data['request_type'] == "SELECT") {
-              if (!isset($data['condition'])) {
+        /*TODO Special User Query type*/
+        if ($data['request_type'] == 'User') {
+            die("User Info request feature first. Login and registration next!");
+        }
+        if ($data['request_type'] == "SELECT") {
+            if (!isset($data['condition'])) {
                 return $data['request_type'] . " * FROM " . $data['table'];
             } else {
                 return $data['request_type'] . " * FROM " . $data['table'] . " WHERE " . $data['condition'];

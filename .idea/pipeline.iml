@@ -1,8 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/inflector" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/illuminate/container" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/illuminate/contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/illuminate/database" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/illuminate/support" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/jeremeamia/SuperClosure" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/larapack/dd" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/larapacks/authorization" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/nesbot/carbon" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/nikic/php-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/container" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/simple-cache" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-php56" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-php72" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-util" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/translation" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/var-dumper" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="PHP" type="php">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/composer" />
+          <root url="file://$MODULE_DIR$/vendor/doctrine/inflector" />
+          <root url="file://$MODULE_DIR$/vendor/illuminate/container" />
+          <root url="file://$MODULE_DIR$/vendor/illuminate/contracts" />
+          <root url="file://$MODULE_DIR$/vendor/illuminate/database" />
+          <root url="file://$MODULE_DIR$/vendor/illuminate/support" />
+          <root url="file://$MODULE_DIR$/vendor/jeremeamia/SuperClosure" />
+          <root url="file://$MODULE_DIR$/vendor/larapack/dd" />
+          <root url="file://$MODULE_DIR$/vendor/larapacks/authorization" />
+          <root url="file://$MODULE_DIR$/vendor/nesbot/carbon" />
+          <root url="file://$MODULE_DIR$/vendor/nikic/php-parser" />
+          <root url="file://$MODULE_DIR$/vendor/psr/container" />
+          <root url="file://$MODULE_DIR$/vendor/psr/simple-cache" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-php56" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-php72" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-util" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/translation" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/var-dumper" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/composer" />
+          <root url="file://$MODULE_DIR$/vendor/doctrine/inflector" />
+          <root url="file://$MODULE_DIR$/vendor/illuminate/container" />
+          <root url="file://$MODULE_DIR$/vendor/illuminate/contracts" />
+          <root url="file://$MODULE_DIR$/vendor/illuminate/database" />
+          <root url="file://$MODULE_DIR$/vendor/illuminate/support" />
+          <root url="file://$MODULE_DIR$/vendor/jeremeamia/SuperClosure" />
+          <root url="file://$MODULE_DIR$/vendor/larapack/dd" />
+          <root url="file://$MODULE_DIR$/vendor/larapacks/authorization" />
+          <root url="file://$MODULE_DIR$/vendor/nesbot/carbon" />
+          <root url="file://$MODULE_DIR$/vendor/nikic/php-parser" />
+          <root url="file://$MODULE_DIR$/vendor/psr/container" />
+          <root url="file://$MODULE_DIR$/vendor/psr/simple-cache" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-php56" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-php72" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-util" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/translation" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/var-dumper" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="retailer" />
   </component>
 </module>

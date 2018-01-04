@@ -1,24 +1,25 @@
 <?php
 
 class Connect{
-  protected $host;
-  protected $user;
-  protected $password;
-  protected $database;
-  public $connection;
+    protected $host;
+    protected $user;
+    protected $password;
+    protected $database;
+    public $connection;
 
-  public function __construct()
-  {
-    $this->host = DB_HOST;
-    $this->user = DB_USER;
-    $this->password = DB_PASSWORD;
-    $this->database = DB_TABLE;
+    public function __construct()
+    {
+        $this->host = DB_HOST;
+        $this->user = DB_USER;
+        $this->password = DB_PASSWORD;
+        $this->database = DB_DATABASE;
 
-    $this->Connect();
-  }
+        $this->Connect();
+    }
 
-  public function Connect()
-  {
-      return new mysqli($this->host , $this->user , $this->password , $this->database);
-  }
+    public function Connect()
+    {
+        $TmpConnection = new mysqli($this->host , $this->user , $this->password , $this->database);
+        return $TmpConnection;
+    }
 }
