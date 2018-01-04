@@ -93,7 +93,7 @@ class pipeline extends Connect
 	public function createToken($user)
 	{
 	
-		while($row = $user->fetch_assoc)
+		while($row = $user->fetch_assoc())
 		{
 			$userdata = $row;
 		}
@@ -102,6 +102,7 @@ class pipeline extends Connect
 		{
 				$token = $this->randStringGenerator();
 		}
+		$update = "";
 	}
 	
 	private function generateRandomString($length = 15) 
