@@ -45,10 +45,18 @@ class pipeline extends Connect
                     $this->createToken($result);
                 }
             } else {
+                $this->clean();
                 die('Unathorized Request');
             }
         } else {
-            $this->request($_POST);
+            $token = $_POST['token'];
+            $result = $this->conn->query("SELECT * FROM users WHERE token=$token");
+            if ($result) {
+                $this->request($_POST);
+            } else {
+                $this->clean();
+                die("Something went wrong with your token.");
+            }
         }
     }
 
@@ -83,13 +91,7 @@ class pipeline extends Connect
         return false;
     }
 
-    public function clean()
-    {
-        $this->conn->close();
-        unset($this->conn);
-    }
-
-    public function createToken($user)
+    protected function createToken($user)
     {
 
         while ($row = $user->fetch_assoc()) {
@@ -97,9 +99,12 @@ class pipeline extends Connect
         }
 
         if (!isset($userdata['token']) && !empty($userdata['token']) || $userdata['token'] !== NULL) {
-            $token = $this->randStringGenerator();
+            $token = $this->generateRandomString();
+
         }
-        $update = "";
+        $id = $userdata['id'];
+        $update = "UPDATE users SET `token`=$token WHERE id=$id";
+        $this->request($update);
     }
 
     private function generateRandomString($length = 15)
@@ -111,6 +116,12 @@ class pipeline extends Connect
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
         return $randomString;
+    }
+
+    public function clean()
+    {
+        $this->conn->close();
+        unset($this->conn);
     }
 
 }

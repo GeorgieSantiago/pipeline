@@ -44,7 +44,7 @@ class Model
         }
     }
 
-    protected function authorize($data)
+    public function authorize($data)
     {
         $un = $data['username'];
         $pw = $data['password'];
@@ -58,5 +58,9 @@ class Model
     {
         $un = $data['username'];
         $pw = $data['pin'];
+        $email = $data['email'];
+
+        $sql = "INSERT INTO users VALUES($un , $pw , $email)";
+        return $sql;
     }
 }
