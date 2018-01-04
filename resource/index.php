@@ -36,21 +36,20 @@ class pipeline extends Connect
 //Please refactor this shit.
     private function auth()
     {
-		if(!isset($_POST['token'])){
-			if(isset($_POST['username']) && isset($_POST['pin'])){
-				$auth_model = new Model;
-				$sql = $auth_model->authorize($_POST);
-				$result = $this->conn->query($sql);
-				if($result->num_rows == 1)
-				{
-					$this->createToken($result);
-				}
-			} else {
-				die('Unathorized Request');
-			}
-		} else {
-			$this->request($_POST);
-		}
+        if (!isset($_POST['token'])) {
+            if (isset($_POST['username']) && isset($_POST['pin'])) {
+                $auth_model = new Model;
+                $sql = $auth_model->authorize($_POST);
+                $result = $this->conn->query($sql);
+                if ($result->num_rows == 1) {
+                    $this->createToken($result);
+                }
+            } else {
+                die('Unathorized Request');
+            }
+        } else {
+            $this->request($_POST);
+        }
     }
 
     private function request($data)
@@ -59,7 +58,7 @@ class pipeline extends Connect
         $sql = $model->CreateQuery($data);
         $result = $this->conn->query($sql);
         $tmp = [];
-		
+
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $tmp[] = $row;
@@ -89,31 +88,29 @@ class pipeline extends Connect
         $this->conn->close();
         unset($this->conn);
     }
-	
-	public function createToken($user)
-	{
-	
-		while($row = $user->fetch_assoc())
-		{
-			$userdata = $row;
-		}
-		
-		if(!isset($userdata['token']) && !empty($userdata['token']) || $userdata['token'] !== NULL)
-		{
-				$token = $this->randStringGenerator();
-		}
-		$update = "";
-	}
-	
-	private function generateRandomString($length = 15) 
-	{
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
+
+    public function createToken($user)
+    {
+
+        while ($row = $user->fetch_assoc()) {
+            $userdata = $row;
+        }
+
+        if (!isset($userdata['token']) && !empty($userdata['token']) || $userdata['token'] !== NULL) {
+            $token = $this->randStringGenerator();
+        }
+        $update = "";
     }
-    return $randomString;
-}
+
+    private function generateRandomString($length = 15)
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
 
 }
